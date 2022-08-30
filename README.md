@@ -6,3 +6,5 @@ This is a simple library that will include following features:
 - Remove books from the library
 - Add/Change read status
 - Book will have title, author and no. of pages
+
+[LIVE DEMO](https://github.io/isaaxh/library)
