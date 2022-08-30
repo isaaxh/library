@@ -7,4 +7,4 @@ This is a simple library that will include following features:
 - Add/Change read status
 - Book will have title, author and no. of pages
 
-[LIVE DEMO](https://github.io/isaaxh/library)
+[LIVE DEMO](https://isaaxh.github.io/library)
