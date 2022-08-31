@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <script src="./script.js" defer></script>
     <title>Library App</title>
   </head>
@@ -13,7 +17,14 @@
       <div class="container">
         <h1>Library App</h1>
         <nav>
-          <button class="btn">Log in</button>
+          <div>
+            <input type="checkbox" class="checkbox" id="checkbox" />
+            <label for="checkbox" class="label">
+              <i class="material-icons theme-icons">dark_mode</i>
+              <i class="material-icons theme-icons">sunny</i>
+              <div class="ball"></div>
+            </label>
+          </div>
         </nav>
       </div>
     </header>
@@ -27,8 +38,8 @@
             <div class="pages">500 pages</div>
           </div>
           <div class="buttons">
-            <button class="read-status-btn">Read</button>
-            <button class="remove-btn">Remove Book</button>
+            <button class="card-btns read-status-btn">Read</button>
+            <button class="card-btns remove-btn">Remove Book</button>
           </div>
         </div>
         <div class="card">
@@ -38,8 +49,8 @@
             <div class="pages">500 pages</div>
           </div>
           <div class="buttons">
-            <button class="read-status-btn">Read</button>
-            <button class="remove-btn">Remove Book</button>
+            <button class="card-btns read-status-btn">Read</button>
+            <button class="card-btns remove-btn">Remove Book</button>
           </div>
         </div>
         <div class="card">
@@ -49,8 +60,8 @@
             <div class="pages">500 pages</div>
           </div>
           <div class="buttons">
-            <button class="read-status-btn">Read</button>
-            <button class="remove-btn">Remove Book</button>
+            <button class="card-btns read-status-btn">Read</button>
+            <button class="card-btns remove-btn">Remove Book</button>
           </div>
         </div>
         <div class="card">
@@ -60,8 +71,8 @@
             <div class="pages">500 pages</div>
           </div>
           <div class="buttons">
-            <button class="read-status-btn">Read</button>
-            <button class="remove-btn">Remove Book</button>
+            <button class="card-btns read-status-btn">Read</button>
+            <button class="card-btns remove-btn">Remove Book</button>
           </div>
         </div>
       </div>
@@ -71,5 +82,28 @@
         <a href="https://github.com/isaaxh">@isaaxh </a>
       </div>
     </footer>
+    <div class="modal-container" id="modal-container">
+      <div class="modal">
+        <form action="#">
+          <h2>Add new book</h2>
+          <input
+            type="text"
+            name="name"
+            id="name"
+            placeholder="Title"
+            required
+          />
+          <input type="text" name="author" placeholder="Author" id="author" />
+          <input type="number" name="pages" id="pages" placeholder="Pages" />
+          <p>
+            Have you read it?
+            <input type="checkbox" />
+          </p>
+          <button type="submit" name="submit" class="btn submit-btn">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

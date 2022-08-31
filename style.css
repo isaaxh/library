@@ -10,12 +10,14 @@
     Segoe UI Symbol;
   --font-style-body: normal;
   --font-weight-body: 500;
-  --font-size-body: 1rem;
-  --background-color: rgb(243, 243, 243);
+  --font-size-body: 1.2rem;
+  --background-color: rgb(235, 235, 235);
   --primary-color: #a66cff;
   --hover-color: #8559c7;
   --accent-1-color: #b1e1ff;
   --accent-2-color: #afb4ff;
+  --dark-mode-header: #191d27;
+  --dark-mode-body: #292c35;
   --color-white: #ffff;
   --color-black: #1d1b1b;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -49,6 +51,26 @@ body {
   flex-direction: column;
 }
 
+/* dark mode */
+
+header.dark {
+  background-color: var(--dark-mode-header);
+}
+
+body.dark {
+  background-color: var(--dark-mode-body);
+}
+
+.card.dark {
+  background-color: var(--dark-mode-header);
+  color: var(--color-white);
+}
+
+.card-btns.dark {
+  background-color: var(--dark-mode-body);
+  color: var(--color-white);
+}
+
 button,
 input {
   border: none;
@@ -62,7 +84,6 @@ input {
   background-color: #a66cff;
   padding: var(--spacing-sm) var(--spacing-md);
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
 }
 
 button:hover,
@@ -95,8 +116,67 @@ header .container {
   padding: var(--spacing-lg);
 }
 header nav {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.theme-btn {
+  background-color: transparent;
+  color: lightgrey;
+  box-shadow: none;
+}
+
+.theme-btn:hover,
+.theme-btn:active {
+  color: var(--primary-color);
+  background-color: transparent;
+}
+
+nav hr {
+  transform: translate(90deg);
+  height: 2rem;
+  border: 0.2px solid rgb(184, 182, 182);
+}
+
+.label {
+  background-color: black;
+  display: flex;
+  border-radius: 50px;
+  height: 26px;
+  width: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  position: relative;
+}
+
+.checkbox {
+  opacity: 0;
+  position: absolute;
+}
+
+.ball {
+  background-color: #fff;
+  height: 23px;
+  width: 23px;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.2s linear;
+}
+
+.checkbox:checked + .label .ball {
+  transform: translateX(30px);
+}
+
+.theme-icons {
+  color: var(--background-color);
+}
+
+/* main content */
 
 .main {
   flex: 1;
@@ -143,6 +223,16 @@ header nav {
   gap: var(--spacing-md);
 }
 
+.card button {
+  background-color: var(--background-color);
+  color: var(--color-black);
+}
+
+.card button:hover {
+  background-color: var(--primary-color);
+  color: var(--color-white);
+}
+
 .footer {
   text-align: center;
 }
@@ -150,4 +240,52 @@ a {
   color: var(--color-black);
   cursor: pointer;
   text-decoration: none;
+}
+
+.modal-container {
+  background-color: rgb(0, 0, 0, 0.2);
+  position: fixed;
+  opacity: 0;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.3s ease;
+}
+
+.modal-container.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.modal {
+  background-color: var(--background-color);
+  max-width: 350px;
+  width: 100%;
+  padding: var(--spacing-lg) 0;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+.modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--spacing-md);
+}
+
+.modal input {
+  background-color: #fff;
+  max-width: 80%;
+  color: var(--color-black);
+}
+
+.modal button {
+  width: 80%;
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-body);
 }
