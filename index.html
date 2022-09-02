@@ -86,15 +86,20 @@
       <div class="modal">
         <form action="#">
           <h2>Add new book</h2>
-          <input
-            type="text"
-            name="title"
-            id="title"
-            placeholder="Title"
-            required
-          />
-          <input type="text" name="author" placeholder="Author" id="author" />
-          <input type="number" name="pages" id="pages" placeholder="Pages" />
+          <div class="input-container error-input">
+            <input type="text" name="title" id="title" placeholder="Title" />
+          </div>
+          <div class="input-container error-input">
+            <input
+              type="text"
+              name="author Name"
+              placeholder="Author"
+              id="author"
+            />
+          </div>
+          <div class="input-container">
+            <input type="number" name="pages" id="pages" placeholder="Pages" />
+          </div>
           <p>
             Have you read it?
             <input type="checkbox" id="read-status" />

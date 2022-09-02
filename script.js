@@ -8,10 +8,14 @@ const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const readStatus = document.querySelector("#read-status");
+const errorInputContainers = document.querySelectorAll(".error-input");
+
+log(errorInputContainers[0].value);
 
 // Main code
 
 let myLibrary = [];
+let formStatus = "close";
 
 function Book(title, author, pages, readStatus) {
   this.title = title;
@@ -28,11 +32,9 @@ function addBookToLibrary() {
 const closeModalContainer = function (e) {
   "use strict";
   log(e.target);
-  log(this);
-  if (e.target !== this) {
-    return;
+  if (e.target === this) {
+    modalContainer.classList.remove("show");
   }
-  modalContainer.classList.remove("show");
 };
 
 // Toggle dark mode
@@ -42,10 +44,25 @@ checkbox.addEventListener("change", () => {
 });
 
 // Validation
-function validate(book_obj) {
-  if (title === "" || author === "" || pages === "") {
-    log("Please fill in all the fields");
-    return;
+
+function validate() {
+  "use strict";
+
+  if (title.value === "") {
+    errorInputContainers[0].setAttribute("data-error", "Sorry, enter a title.");
+  } else {
+    errorInputContainers[0].removeAttribute("data-error");
+  }
+  if (author.value === "") {
+    errorInputContainers[1].setAttribute(
+      "data-error",
+      "Sorry, enter an author's name."
+    );
+  } else {
+    errorInputContainers[1].removeAttribute("data-error");
+  }
+  if (title.value !== "" && author.value !== "") {
+    formStatus = "close";
   }
 }
 
@@ -53,10 +70,15 @@ function validate(book_obj) {
 
 addBtn.addEventListener("click", () => {
   modalContainer.classList.add("show");
+  formStatus = "open";
 });
 
-submitBtn.addEventListener("click", () => {
-  modalContainer.classList.remove("show");
+submitBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  validate();
+  if (formStatus === "close") {
+    modalContainer.classList.remove("show");
+  }
 });
 
-modalContainer.onclick = closeModalContainer;
+modalContainer.addEventListener("click", closeModalContainer);
