@@ -71,6 +71,7 @@ input {
   border-radius: var(--border-radius);
 }
 
+.purp-btn:hover,
 .purp-btn {
   color: white;
   background-color: var(--accent-color);
@@ -164,6 +165,9 @@ header nav {
   width: 100%;
   max-width: 200px;
   margin: 0 auto;
+  background-color: transparent;
+  color: var(--text-color-2);
+  font-size: 1.4rem;
 }
 
 .card-container {
