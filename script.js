@@ -9,12 +9,14 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const readStatus = document.querySelector("#read-status");
 const errorInputContainers = document.querySelectorAll(".error-input");
+const successMsgContainer = document.querySelector(".success-msg");
 
-log(errorInputContainers[0].value);
+//log(errorInputContainers[0].value);
+//log(successMsgContainer);
 
 // Main code
-
 let myLibrary = [];
+let inputStatus = "incomplete";
 let formStatus = "close";
 
 function Book(title, author, pages, readStatus) {
@@ -24,9 +26,9 @@ function Book(title, author, pages, readStatus) {
   this.readStatus = readStatus;
 }
 
-function addBookToLibrary() {
-  myLibrary.push(book_obj);
-  log("hello baby");
+function addBookToLibrary(newBook) {
+  myLibrary.push(newBook);
+  log(myLibrary);
 }
 
 const closeModalContainer = function (e) {
@@ -37,6 +39,13 @@ const closeModalContainer = function (e) {
   }
 };
 
+function resetVariables() {
+  title.value = "";
+  author.value = "";
+  pages.value = "";
+  readStatus.value = "off";
+}
+
 // Toggle dark mode
 
 checkbox.addEventListener("change", () => {
@@ -45,11 +54,17 @@ checkbox.addEventListener("change", () => {
 
 // Validation
 
+function successAlert() {
+  successMsgContainer.setAttribute("data-success", "Book added successfully");
+  log(successMsgContainer.dataset.success);
+}
+
 function validate() {
   "use strict";
 
   if (title.value === "") {
     errorInputContainers[0].setAttribute("data-error", "Sorry, enter a title.");
+    inputStatus = "incomplete";
   } else {
     errorInputContainers[0].removeAttribute("data-error");
   }
@@ -63,6 +78,7 @@ function validate() {
   }
   if (title.value !== "" && author.value !== "") {
     formStatus = "close";
+    inputStatus = "complete";
   }
 }
 
@@ -76,6 +92,18 @@ addBtn.addEventListener("click", () => {
 submitBtn.addEventListener("click", (e) => {
   e.preventDefault();
   validate();
+  if (inputStatus === "complete") {
+    const newBook = new Book(
+      title.value,
+      author.value,
+      pages.value,
+      readStatus.value
+    );
+    addBookToLibrary(newBook);
+    resetVariables();
+    successAlert();
+    log(newBook);
+  }
   if (formStatus === "close") {
     modalContainer.classList.remove("show");
   }
