@@ -1,5 +1,6 @@
 const log = console.log;
 
+const cardContainer = document.querySelector(".card-container");
 const addBtn = document.querySelector(".add-btn");
 const modalContainer = document.querySelector("#modal-container");
 const submitBtn = document.querySelector(".submit-btn");
@@ -25,6 +26,25 @@ function Book(title, author, pages, readStatus) {
   this.pages = pages;
   this.readStatus = readStatus;
 }
+
+Book.prototype.addCard = function (title, author, pages) {
+  let code = `
+          <div class="card">
+          <div class="book-content">
+            <div class="title">"${title.value}"</div>
+            <div class="author">${author.value}</div>
+            <div class="pages">${pages.value} pages</div>
+          </div>
+          <div class="buttons">
+            <button class="card-btns read-status-btn">Read</button>
+            <button class="card-btns remove-btn">Remove Book</button>
+          </div>`;
+
+  log(title.value);
+  cardContainer.innerHTML += code;
+};
+
+Book.prototype.removeCard = function () {};
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
@@ -56,8 +76,9 @@ checkbox.addEventListener("change", () => {
 
 function successAlert() {
   successMsgContainer.setAttribute("data-success", "Book added successfully");
-  log(successMsgContainer.dataset.success);
 }
+
+function removeSuccessAlert() {}
 
 function validate() {
   "use strict";
@@ -100,8 +121,12 @@ submitBtn.addEventListener("click", (e) => {
       readStatus.value
     );
     addBookToLibrary(newBook);
+    newBook.addCard(title, author, pages);
     resetVariables();
     successAlert();
+    setTimeout(function () {
+      successMsgContainer.removeAttribute(["data-success"]);
+    }, 3000);
     log(newBook);
   }
   if (formStatus === "close") {
