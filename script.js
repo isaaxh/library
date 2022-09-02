@@ -9,7 +9,7 @@ const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
 const readStatus = document.querySelector("#read-status");
 
-log(readStatus);
+// Main code
 
 let myLibrary = [];
 
@@ -20,11 +20,36 @@ function Book(title, author, pages, readStatus) {
   this.readStatus = readStatus;
 }
 
-function addBookToLibrary() {}
+function addBookToLibrary() {
+  myLibrary.push(book_obj);
+  log("hello baby");
+}
+
+const closeModalContainer = function (e) {
+  "use strict";
+  log(e.target);
+  log(this);
+  if (e.target !== this) {
+    return;
+  }
+  modalContainer.classList.remove("show");
+};
+
+// Toggle dark mode
 
 checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark-theme");
 });
+
+// Validation
+function validate(book_obj) {
+  if (title === "" || author === "" || pages === "") {
+    log("Please fill in all the fields");
+    return;
+  }
+}
+
+// Form functionality
 
 addBtn.addEventListener("click", () => {
   modalContainer.classList.add("show");
@@ -34,6 +59,4 @@ submitBtn.addEventListener("click", () => {
   modalContainer.classList.remove("show");
 });
 
-modalContainer.addEventListener("click", () => {
-  modalContainer.classList.remove("show");
-});
+modalContainer.onclick = closeModalContainer;
