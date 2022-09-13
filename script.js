@@ -1,6 +1,7 @@
 const log = console.log;
 
 const cardContainer = document.querySelector(".card-container");
+const cards = document.querySelectorAll(["data-index"]);
 const addBtn = document.querySelector(".add-btn");
 const modalContainer = document.querySelector("#modal-container");
 const submitBtn = document.querySelector(".submit-btn");
@@ -11,6 +12,7 @@ const pages = document.querySelector("#pages");
 const readStatus = document.querySelector("#read-status");
 const errorInputContainers = document.querySelectorAll(".error-input");
 const successMsgContainer = document.querySelector(".success-msg");
+const removeBtns = document.querySelectorAll(["data-index"]);
 
 //log(errorInputContainers[0].value);
 //log(successMsgContainer);
@@ -20,6 +22,8 @@ let myLibrary = [];
 let inputStatus = "incomplete";
 let formStatus = "close";
 
+log(myLibrary.length);
+
 function Book(title, author, pages, readStatus) {
   this.title = title;
   this.author = author;
@@ -27,24 +31,26 @@ function Book(title, author, pages, readStatus) {
   this.readStatus = readStatus;
 }
 
-Book.prototype.addCard = function (title, author, pages) {
+Book.prototype.addCard = function (title, author, pages, index) {
   let code = `
-          <div class="card">
-          <div class="book-content">
-            <div class="title">"${title.value}"</div>
-            <div class="author">${author.value}</div>
-            <div class="pages">${pages.value} pages</div>
-          </div>
-          <div class="buttons">
-            <button class="card-btns read-status-btn">Read</button>
-            <button class="card-btns remove-btn">Remove Book</button>
-          </div>`;
+    <div class="card" data-index="${index}">
+    <div class="book-content">
+      <div class="title">"${title.value}"</div>
+      <div class="author">${author.value}</div>
+      <div class="pages">${pages.value} pages</div>
+    </div>
+    <div class="buttons">
+      <button class="card-btns read-status-btn" data-index="${index}">Read</button>
+      <button class="card-btns remove-btn" data-index="${index}">Remove Book</button>
+    </div>`;
 
-  log(title.value);
   cardContainer.innerHTML += code;
 };
 
-Book.prototype.removeCard = function () {};
+Book.prototype.removeCard = function (card) {
+  this.card = card;
+  log(this.card);
+};
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
@@ -53,7 +59,6 @@ function addBookToLibrary(newBook) {
 
 const closeModalContainer = function (e) {
   "use strict";
-  log(e.target);
   if (e.target === this) {
     modalContainer.classList.remove("show");
   }
@@ -78,7 +83,9 @@ function successAlert() {
   successMsgContainer.setAttribute("data-success", "Book added successfully");
 }
 
-function removeSuccessAlert() {}
+function removeSuccessAlert() {
+  successMsgContainer.removeAttribute(["data-success"]);
+}
 
 function validate() {
   "use strict";
@@ -103,6 +110,8 @@ function validate() {
   }
 }
 
+// Cards Functionalities
+//removeBtn[index].addEventListener("click", () => {});
 // Form functionality
 
 addBtn.addEventListener("click", () => {
@@ -120,14 +129,11 @@ submitBtn.addEventListener("click", (e) => {
       pages.value,
       readStatus.value
     );
+    newBook.addCard(title, author, pages, myLibrary.length);
     addBookToLibrary(newBook);
-    newBook.addCard(title, author, pages);
     resetVariables();
     successAlert();
-    setTimeout(function () {
-      successMsgContainer.removeAttribute(["data-success"]);
-    }, 3000);
-    log(newBook);
+    setTimeout(removeSuccessAlert, 1000);
   }
   if (formStatus === "close") {
     modalContainer.classList.remove("show");
