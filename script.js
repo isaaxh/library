@@ -5,11 +5,11 @@ const cards = document.querySelectorAll(["data-index"]);
 const addBtn = document.querySelector(".add-btn");
 const modalContainer = document.querySelector("#modal-container");
 const submitBtn = document.querySelector(".submit-btn");
-const checkbox = document.querySelector("#checkbox");
+// const checkbox = document.querySelector("#checkbox");
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
-const readStatus = document.querySelector(".read-status-checkbox");
+// const readStatusBox = document.querySelector(".read-status-checkbox");
 const readStatusBtn = document.querySelector("#read-status-btn");
 const errorInputContainers = document.querySelectorAll(".error-input");
 const successMsgContainer = document.querySelector(".success-msg");
@@ -41,7 +41,7 @@ Book.prototype.addCard = function (title, author, pages, index) {
       <div class="pages">${pages.value} pages</div>
     </div>
     <div class="buttons">
-      <button class="card-btns read-status-btn" data-index="${index}">Read</button>
+      <button class="card-btns read-status-btn" data-index="${index}" onclick="onClick(this)">Read</button>
       <button class="card-btns remove-btn" data-index="${index}">Remove Book</button>
     </div>`;
 
@@ -80,10 +80,10 @@ checkbox.addEventListener("change", () => {
 
 //readStatus button
 
-readStatusBtn.addEventListener("click", () => {
-  readStatusBtn.classList.toggle("read-true")
-  console.log("readStatus is clicked");
-});
+function onClick(e) {
+  e.classList.toggle("read-true");
+}
+
 // Validation
 
 // function successAlert() {
@@ -134,14 +134,17 @@ submitBtn.addEventListener("click", (e) => {
       title.value,
       author.value,
       pages.value,
-      readStatus.value
+      // readStatusBox.value
     );
     newBook.addCard(title, author, pages, myLibrary.length);
     addBookToLibrary(newBook);
     //resetVariables();
-    if (readStatus.checked){
-      document.body.classList.toggle("dark-theme");
-    }
+    // if (readStatusBox.checked){
+    //   console.log(this);
+    //   // const statusBtn = this.querySelector("readStatusBtn");
+    //   statusBtn.classList.toggle("read-true");
+    //   // onClick();
+    // }
     // successAlert();
     // setTimeout(removeSuccessAlert, 1000);
   }

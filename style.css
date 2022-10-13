@@ -18,7 +18,7 @@
   --text-color-1: #ffff;
   --text-color-2: rgba(15, 15, 15, 0.933);
   --error-color: #c92432;
-  --success-color: #4bb543;
+  --success-color: #73d56c;
   --error-background: #fffafa;
   --shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   --container-width: 1200px;
@@ -170,7 +170,7 @@ header nav {
   font-size: 1.4rem;
 }
 
-.success-msg[data-success] {
+/* .success-msg[data-success] {
   width: 100%;
   height: 30px;
   padding: var(--spacing-sm);
@@ -179,12 +179,12 @@ header nav {
   align-items: center;
   justify-content: center;
   margin: 0;
-}
+} */
 
-.success-msg::after {
+/* .success-msg::after {
   content: attr(data-success);
   color: var(--success-color);
-}
+} */
 
 .card-container {
   display: grid;
@@ -229,9 +229,14 @@ header nav {
   color: white;
 }
 
-.read-true{ 
+.card button.remove-btn:hover {
+  background-color: var(--error-color) !important;
+  color: white
+} 
+
+.read-true  { 
   background-color: var(--success-color) !important;
-  color: white;
+  color: white !important;
 } 
 
 .footer {

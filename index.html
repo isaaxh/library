@@ -30,7 +30,7 @@
     </header>
     <main class="main container">
       <button class="purp-btn add-btn">+ Add Book</button>
-      <div class="success-msg"></div>
+      <!-- <div class="success-msg"></div> -->
       <div class="card-container">
         <div class="card">
           <div class="book-content">
@@ -39,7 +39,13 @@
             <div class="pages">500 pages</div>
           </div>
           <div class="buttons">
-            <button class="card-btns" id="read-status-btn">Read</button>
+            <button
+              class="card-btns"
+              id="read-status-btn"
+              onclick="onClick(this)"
+            >
+              Read
+            </button>
             <button class="card-btns remove-btn">Remove Book</button>
           </div>
         </div>
@@ -81,10 +87,10 @@
               value="500"
             />
           </div>
-          <p>
+          <!-- <p>
             Have you read it?
             <input type="checkbox" class="read-status-checkbox" checked />
-          </p>
+          </p> -->
           <button type="submit" name="submit" class="purp-btn submit-btn">
             Submit
           </button>
