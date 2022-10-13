@@ -229,6 +229,11 @@ header nav {
   color: white;
 }
 
+.read-true{ 
+  background-color: var(--success-color) !important;
+  color: white;
+} 
+
 .footer {
   text-align: center;
 }

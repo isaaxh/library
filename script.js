@@ -9,7 +9,8 @@ const checkbox = document.querySelector("#checkbox");
 const title = document.querySelector("#title");
 const author = document.querySelector("#author");
 const pages = document.querySelector("#pages");
-const readStatus = document.querySelector("#read-status");
+const readStatus = document.querySelector(".read-status-checkbox");
+const readStatusBtn = document.querySelector("#read-status-btn");
 const errorInputContainers = document.querySelectorAll(".error-input");
 const successMsgContainer = document.querySelector(".success-msg");
 const removeBtns = document.querySelectorAll(["data-index"]);
@@ -77,15 +78,21 @@ checkbox.addEventListener("change", () => {
   document.body.classList.toggle("dark-theme");
 });
 
+//readStatus button
+
+readStatusBtn.addEventListener("click", () => {
+  readStatusBtn.classList.toggle("read-true")
+  console.log("readStatus is clicked");
+});
 // Validation
 
-function successAlert() {
-  successMsgContainer.setAttribute("data-success", "Book added successfully");
-}
+// function successAlert() {
+//   successMsgContainer.setAttribute("data-success", "Book added successfully");
+// }
 
-function removeSuccessAlert() {
-  successMsgContainer.removeAttribute(["data-success"]);
-}
+// function removeSuccessAlert() {
+//   successMsgContainer.removeAttribute(["data-success"]);
+// }
 
 function validate() {
   "use strict";
@@ -131,9 +138,12 @@ submitBtn.addEventListener("click", (e) => {
     );
     newBook.addCard(title, author, pages, myLibrary.length);
     addBookToLibrary(newBook);
-    resetVariables();
-    successAlert();
-    setTimeout(removeSuccessAlert, 1000);
+    //resetVariables();
+    if (readStatus.checked){
+      document.body.classList.toggle("dark-theme");
+    }
+    // successAlert();
+    // setTimeout(removeSuccessAlert, 1000);
   }
   if (formStatus === "close") {
     modalContainer.classList.remove("show");

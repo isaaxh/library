@@ -39,7 +39,7 @@
             <div class="pages">500 pages</div>
           </div>
           <div class="buttons">
-            <button class="card-btns read-status-btn">Read</button>
+            <button class="card-btns" id="read-status-btn">Read</button>
             <button class="card-btns remove-btn">Remove Book</button>
           </div>
         </div>
@@ -47,7 +47,7 @@
     </main>
     <footer class="footer container">
       <div class="contact-info">
-        <a href="https://github.com/isaaxh">@isaaxh </a>
+        <a href="https://github.com/isaaxh">@isaaxh</a>
       </div>
     </footer>
     <div class="modal-container" id="modal-container">
@@ -55,7 +55,13 @@
         <form action="#">
           <h2>Add new book</h2>
           <div class="input-container error-input">
-            <input type="text" name="title" id="title" placeholder="Title" />
+            <input
+              type="text"
+              name="title"
+              id="title"
+              placeholder="Title"
+              value="friends"
+            />
           </div>
           <div class="input-container error-input">
             <input
@@ -63,14 +69,21 @@
               name="author Name"
               placeholder="Author"
               id="author"
+              value="A comedian"
             />
           </div>
           <div class="input-container">
-            <input type="number" name="pages" id="pages" placeholder="Pages" />
+            <input
+              type="number"
+              name="pages"
+              id="pages"
+              placeholder="Pages"
+              value="500"
+            />
           </div>
           <p>
             Have you read it?
-            <input type="checkbox" id="read-status" />
+            <input type="checkbox" class="read-status-checkbox" checked />
           </p>
           <button type="submit" name="submit" class="purp-btn submit-btn">
             Submit
