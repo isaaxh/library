@@ -15,15 +15,12 @@ const errorInputContainers = document.querySelectorAll(".error-input");
 const successMsgContainer = document.querySelector(".success-msg");
 const removeBtns = document.querySelectorAll(["data-index"]);
 
-//log(errorInputContainers[0].value);
-//log(successMsgContainer);
 
 // Main code
 let myLibrary = [];
 let inputStatus = "incomplete";
 let formStatus = "close";
 
-log(myLibrary.length);
 
 function Book(title, author, pages, readStatus) {
   this.title = title;
@@ -41,21 +38,36 @@ Book.prototype.addCard = function (title, author, pages, index) {
       <div class="pages">${pages.value} pages</div>
     </div>
     <div class="buttons">
-      <button class="card-btns read-status-btn" data-index="${index}" onclick="onClick(this)">Read</button>
-      <button class="card-btns remove-btn" data-index="${index}">Remove Book</button>
+      <button class="card-btns read-status-btn"  
+      onclick="onClick(this)">Read</button>
+      <button class="card-btns remove-btn" 
+      data-index="${index}" 
+      onclick="removeCard(this)">Remove Book</button>
     </div>`;
 
   cardContainer.innerHTML += code;
 };
 
-Book.prototype.removeCard = function (card) {
-  this.card = card;
-  log(this.card);
-};
+// Book.prototype.removeCard = function (cardIndex) {
+//   this.cardIndex = cardIndex;
+//   log(this.card);
+// };
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
   log(myLibrary);
+}
+
+function removeBookFromLibrary(index){
+  myLibrary.splice(index, 1);
+}
+
+function removeCard(e){
+  const cardIndex = e.getAttribute("data-index");
+  removeBookFromLibrary(cardIndex);
+  const card =document.querySelector(`[data-index="${cardIndex}"]`);
+  card.remove();
+  console.log(myLibrary);
 }
 
 const closeModalContainer = function (e) {
@@ -69,7 +81,6 @@ function resetVariables() {
   title.value = "";
   author.value = "";
   pages.value = "";
-  readStatus.value = "off";
 }
 
 // Toggle dark mode
@@ -80,9 +91,10 @@ checkbox.addEventListener("change", () => {
 
 //readStatus button
 
-function onClick(e) {
-  e.classList.toggle("read-true");
+function onClick(e) { //passing in the event object
+  e.classList.toggle("read-true"); //using it to add class
 }
+
 
 // Validation
 
@@ -117,8 +129,6 @@ function validate() {
   }
 }
 
-// Cards Functionalities
-//removeBtn[index].addEventListener("click", () => {});
 // Form functionality
 
 addBtn.addEventListener("click", () => {
@@ -134,19 +144,11 @@ submitBtn.addEventListener("click", (e) => {
       title.value,
       author.value,
       pages.value,
-      // readStatusBox.value
     );
     newBook.addCard(title, author, pages, myLibrary.length);
     addBookToLibrary(newBook);
-    //resetVariables();
-    // if (readStatusBox.checked){
-    //   console.log(this);
-    //   // const statusBtn = this.querySelector("readStatusBtn");
-    //   statusBtn.classList.toggle("read-true");
-    //   // onClick();
-    // }
-    // successAlert();
-    // setTimeout(removeSuccessAlert, 1000);
+    resetVariables();
+  
   }
   if (formStatus === "close") {
     modalContainer.classList.remove("show");
