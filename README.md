@@ -14,6 +14,7 @@ What I have learned by completing this project:
 - I can remove the card from the webpage using js
 - I can validate input fields showing error if the input is incorrect
 - I know how to create a pop up modal
+- I can add dark mode
 
 Overall this project seemed a bit difficult at start, then when I really focused and tried couple of times I overcame the obstacles that I faced through out the project.
 
