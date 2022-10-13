@@ -1,5 +1,3 @@
-const log = console.log;
-
 const cardContainer = document.querySelector(".card-container");
 const cards = document.querySelectorAll(["data-index"]);
 const addBtn = document.querySelector(".add-btn");
