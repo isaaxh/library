@@ -53,7 +53,6 @@ Book.prototype.addCard = function (title, author, pages, index) {
 
 function addBookToLibrary(newBook) {
   myLibrary.push(newBook);
-  log(myLibrary);
 }
 
 function removeBookFromLibrary(index){
