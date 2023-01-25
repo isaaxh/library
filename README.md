@@ -2,7 +2,7 @@
 
 A web application that allows you to keep track of your book collection. Built using HTML, CSS, and JavaScript, this app is designed to be user-friendly and easy to navigate.
 
-# Features
+## Features
 
 - Add new books to your collection with book name, author name, and number of pages
 - Remove books from your collection
